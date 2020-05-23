@@ -1,0 +1,11 @@
+.direnv
+.envrc
+.gitignore
+*.egg-info
+Makefile
+.dockerignore
+README.md
+docker-compose.yml
+.git
+Dockerfile
+test.rq
