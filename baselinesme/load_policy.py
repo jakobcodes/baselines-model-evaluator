@@ -40,6 +40,7 @@ class FakeGymEnv:
 
 
 def load_policy(fpath):
+    logger.info(f"Loading policy from {fpath}")
     env = FakeGymEnv()
     policy = build_policy(env, policy_network='mlp')
     model = Model(policy=policy,

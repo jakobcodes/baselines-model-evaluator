@@ -1,6 +1,6 @@
 FROM python:3.6
 
-ENV POLICY_PATH=/srv/prod_policy
+ENV POLICY_PATH=/srv/prod_policy/model.bin
 
 RUN pip3 install waitress \
       cloudpickle==0.5.2 \
