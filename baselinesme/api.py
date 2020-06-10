@@ -1,5 +1,5 @@
 from flask import Flask, request, abort, jsonify
-from baselinesme.load_policy import load_policy, DEFAULT_POLICY_PATH
+from baselinesme.load_policy import load_policy
 import datetime as dt
 import logging
 import os
@@ -9,8 +9,9 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s: %(levelname)s/%(name)s] %(message)s')
 app = Flask(__name__)
 
-policy_path = os.environ.get('POLICY_PATH', DEFAULT_POLICY_PATH)
-policy = load_policy(policy_path)
+policy_path = os.environ.get('POLICY_PATH')
+network_type = os.environ.get('NETWORK_TYPE')
+policy = load_policy(fpath=policy_path, network_type=network_type)
 
 
 @app.route('/ping')

@@ -19,10 +19,9 @@ COPY . /tmp
 RUN cd /tmp \
     && mkdir -p /srv \
     && cp -ar /tmp/prod_policy /srv \
-    && pip3 install . 
-# \
-#    && cd / \
-#    && rm -rf /tmp/*
+    && pip3 install . \
+    && cd / \
+    && rm -rf /tmp/*
 
 WORKDIR /srv
 
