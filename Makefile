@@ -1,4 +1,4 @@
-VERSION="2020-06-10"
+VERSION="2020-07-04"
 docker:
 	docker build -t pkoperek/baselinesme:latest -t pkoperek/baselinesme:${VERSION} .
 

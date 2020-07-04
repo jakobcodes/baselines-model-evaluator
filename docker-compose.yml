@@ -1,12 +1,12 @@
 version: '3'
 services:
   oracle:
-    image: pkoperek/baselinesme:2020-06-10
-# Configuration for enabling LSTM policies
-    environment:
-      - POLICY_PATH=/srv/prod_policy/20200609_3_model.bin
-      - NETWORK_TYPE=lstm
-#    volumes:
-#      - ./output_model:/srv/prod_policy
+    image: pkoperek/baselinesme:2020-07-04
+    # Configuration for enabling LSTM policies
+    #environment:
+    #  - INITIAL_POLICY_PATH=/srv/prod_policy/20200609_3_model.bin
+    #  - INITIAL_NETWORK_TYPE=lstm
+    volumes:
+      - ./output_model:/srv/prod_policy
     ports:
       - 8888:8080

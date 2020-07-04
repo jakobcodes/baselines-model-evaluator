@@ -52,6 +52,9 @@ def load_policy(fpath,
     fpath = fpath if fpath else DEFAULT_POLICY_PATH
     network_type = network_type if network_type else DEFAULT_POLICY_NETWORK_TYPE
 
+    if network_type == 'test':
+        return None
+
     logger.info(f"Loading policy from {fpath} with type {network_type}")
     env = FakeGymEnv()
     policy = build_policy(env, policy_network=network_type)
