@@ -1,5 +1,17 @@
 import psycopg2
 from psycopg2 import sql
+import os
+
+
+class StorageConfig:
+    def __init__(self):
+        storage_type = os.getenv('STORAGE_TYPE', 'in_memory')
+        if storage_type == 'in_memory':
+            self.actions_storage = InMemoryActionsHistoryStorage()
+        elif storage_type == 'postgres':
+            self.actions_storage = PostgresActionsHistoryStorage()
+        else:
+            raise ValueError('Unknown storage type')
 
 
 class InMemoryActionsHistoryStorage:
@@ -14,7 +26,13 @@ class InMemoryActionsHistoryStorage:
 
 
 class PostgresActionsHistoryStorage:
-    def __init__(self, db_name='postgres', user='postgres', password='password', host='localhost', port=5432):
+    def __init__(self):
+        db_name = os.getenv('DATABASE_NAME', 'postgres')
+        user = os.getenv('DATABASE_USER', 'postgres')
+        password = os.getenv('DATABASE_PASSWORD', 'postgres')
+        host = os.getenv('DATABASE_HOST', 'postgres')
+        port = os.getenv('DATABASE_PORT', 5432)
+
         self.connection = psycopg2.connect(
             dbname=db_name,
             user=user,

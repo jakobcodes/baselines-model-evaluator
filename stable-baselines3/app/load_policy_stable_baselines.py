@@ -60,12 +60,8 @@ class FakeGymEnv(gym.Env):
         return [seed]
 
 
-def load_policy(fpath=None):
-
-    if fpath is None:
-        fpath = "prod_policy/model"
-
-    logger.info(f"Loading policy from {fpath}")
+def load_policy():
+    logger.info(f"Creating new PPO policy")
     env = FakeGymEnv()
     model = PPO('MlpPolicy', env, verbose=1)
 
@@ -109,7 +105,3 @@ def main():
 # 2. tabelka/wykres - wizualizacja
 # 3. statystyki - dystrybucja akcji
 # 4. pokazanie historii
-
-
-if __name__ == '__main__':
-    main()
