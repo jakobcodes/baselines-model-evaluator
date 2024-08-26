@@ -60,12 +60,15 @@ class FakeGymEnv(gym.Env):
         return [seed]
 
 
-def load_policy():
-    logger.info(f"Creating new PPO policy")
-    env = FakeGymEnv()
-    model = PPO('MlpPolicy', env, verbose=1)
+def load_policy(fpath=None):
 
-    # make function for producing an action given a single state
+    if fpath is None:
+        logger.info(f"Creating new PPO policy")
+        env = FakeGymEnv()
+        model = PPO('MlpPolicy', env, verbose=1)
+    else:
+        model = PPO.load(fpath)
+
     def call_model(raw_state):
         obs = to_nparray(raw_state)
         actions = model.predict(obs)
