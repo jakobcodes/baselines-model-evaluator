@@ -1,0 +1,28 @@
+version: '3.0'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./pData:/var/lib/postgresql/data
+  oracle:
+    container_name: oracle
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - STORAGE_TYPE=postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      postgres:
+        condition: service_started
+    links:
+      - postgres
