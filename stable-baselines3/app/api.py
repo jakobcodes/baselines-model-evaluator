@@ -131,10 +131,16 @@ def update_model():
         abort(500)
 
 
-@app.route('/history', methods=['GET'])
+@app.route('/actions', methods=['GET'])
 def get_actions_history():
     return jsonify(
         list(actions_storage.load())
+    )
+
+@app.route('/policies', methods=['GET'])
+def get_policy_history():
+    return jsonify(
+        list(policy_history_storage.load())
     )
 
 

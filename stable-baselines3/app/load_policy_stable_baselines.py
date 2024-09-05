@@ -102,9 +102,3 @@ def main():
 # 4 usun mala maszyne
 # 5 usun srednia maszyne
 # 6 usun duza maszyne
-
-
-# 1. mozliwosc modyfikacji obserwacji na wejscie
-# 2. tabelka/wykres - wizualizacja
-# 3. statystyki - dystrybucja akcji
-# 4. pokazanie historii

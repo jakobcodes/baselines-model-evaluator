@@ -1,5 +1,5 @@
-from actions_storage import InMemoryActionsHistoryStorage, PostgresActionsHistoryStorage
-from policy_history_storage import PostgresPolicyHistoryStorage
+from actions import InMemoryActionsHistoryStorage, PostgresActionsHistoryStorage
+from policies import InMemoryPolicyHistoryStorage, PostgresPolicyHistoryStorage
 import os
 
 
@@ -17,6 +17,7 @@ class StorageConfig:
         storage_type = os.getenv('STORAGE_TYPE', 'in_memory')
         if storage_type == 'in_memory':
             self.actions_storage = InMemoryActionsHistoryStorage()
+            self.policy_history_storage = InMemoryPolicyHistoryStorage()
         elif storage_type == 'postgres':
             db_name, user, password, host, port = _load_db_config()
             self.actions_storage = PostgresActionsHistoryStorage(db_name, user, password, host, port)
